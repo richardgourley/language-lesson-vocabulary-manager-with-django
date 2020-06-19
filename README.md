@@ -1,5 +1,5 @@
 # Language lesson vocabulary manager with Django
-This is a simple django project that allows a teacher to create online lessons or lessons for students to see.
+This is a simple django project that allows a language teacher to create online lessons or homework to study for their students.
 There are two models:
 
 ## LESSON
