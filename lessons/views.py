@@ -4,11 +4,11 @@ from .models import Lesson
 
 # Create your views here.
 def index(request):
-	return render(request, 'index.html', {})
+	return render(request, 'lessons/index.html', {})
 
 def latest_lessons(request):
 	latest_lessons = Lesson.objects.all()[:5]
 	context = {
 	    'latest_lessons':latest_lessons
 	}
-	return render(request, 'latest.html', context)
+	return render(request, 'lessons/latest.html', context)
