@@ -1,0 +1,8 @@
+<h1>All lessons</h1>
+
+<ul>
+{% for l in all_lessons %}
+    <p>{{ l.lesson_name }}</p>
+    <p>{{ l.description }}</p>
+{% endfor %}
+</ul>
