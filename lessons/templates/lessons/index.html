@@ -1,8 +1,9 @@
+<h1>Welcome to the Spanish Lessons page.</h1>
 <h3>Click a lesson below to learn the words and expressions for your chosen topic.</h3>
 
 <h3>Menu</h3>
 <ul>
 <li><a href="{% url 'lessons:latest_lessons' %}">See the latest lessons</a></li>
-<li><a href="">See all lessons</a></li>
-<li><a href="">Browse individual expressions and words</a></li>
+<li><a href="{% url 'lessons:all_lessons' %}">See all lessons</a></li>
+<li><a href="{% url 'lessons:individual_entries' %}">Browse individual expressions and words</a></li>
 </ul>
