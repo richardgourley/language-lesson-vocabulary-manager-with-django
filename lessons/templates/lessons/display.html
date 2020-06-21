@@ -1,3 +1,11 @@
 <h1>Individual lesson page</h1>
 <h3>LESSON NAME: {{ lesson.lesson_name }}</h3>
 <p><strong>DESCRIPTION:</strong> {{ lesson.description }}</h4>
+
+<ul>
+{% for entry in lesson.entry_set.all %}
+    <li>{{ entry.entry_text }}</li>
+    <li>{{ entry.translation }}</li>
+    <p>----------------------</p>
+{% endfor %}
+</ul>
