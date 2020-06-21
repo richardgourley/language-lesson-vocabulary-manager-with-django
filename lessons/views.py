@@ -19,3 +19,10 @@ def all_lessons(request):
 	    'all_lessons':all_lessons
 	}
 	return render(request, 'lessons/all.html', context)
+
+def individual_entries(request):
+	return HttpResponse("All entries will appear here!")
+
+def display(request, lesson_id):
+	lesson = get_object_or_404(Lesson, pk = lesson_id)
+	return render(request, 'lessons/display.html', {'lesson':lesson})
