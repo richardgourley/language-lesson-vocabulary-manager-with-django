@@ -12,3 +12,10 @@ def latest_lessons(request):
 	    'latest_lessons':latest_lessons
 	}
 	return render(request, 'lessons/latest.html', context)
+
+def all_lessons(request):
+	all_lessons = Lesson.objects.all()
+	context = {
+	    'all_lessons':all_lessons
+	}
+	return render(request, 'lessons/all.html', context)
