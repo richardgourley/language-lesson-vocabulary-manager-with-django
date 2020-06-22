@@ -1,12 +1,12 @@
 <h1>Entries</h1>
 
-{% for l in all_lessons %}
-   <!--<p><strong>LESSON NAME: </strong>{{ l.lesson_name }}</p>-->
-   {% for entry in l.entry_set.all %}
-       <p>{{ entry.entry_text }}</p>
-       <p>{{ entry.translation }}</p>
-       <p>---------</p>
-   {% endfor %}
+{% for e in all_entries %}
+  <p>{{ e.entry_text }}</p>
+  <p>{{ e.translation }}</p>
+  <p>----------</p>
 {% endfor %}
+
+
+
 
 
