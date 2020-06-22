@@ -21,8 +21,16 @@ def all_lessons(request):
 	return render(request, 'lessons/all.html', context)
 
 def individual_entries(request):
-	return HttpResponse("All entries will appear here!")
+	all_lessons = Lesson.objects.all()
+	context = {
+	    'all_lessons':all_lessons
+	}
+	return render(request, 'lessons/entries.html', context)
 
 def display(request, lesson_id):
 	lesson = get_object_or_404(Lesson, pk = lesson_id)
+	context = {
+	    'lesson':lesson,
+	}
 	return render(request, 'lessons/display.html', {'lesson':lesson})
+
