@@ -29,8 +29,6 @@ def individual_entries(request):
 
 def display(request, lesson_id):
 	lesson = get_object_or_404(Lesson, pk = lesson_id)
-	context = {
-	    'lesson':lesson,
-	}
 	return render(request, 'lessons/display.html', {'lesson':lesson})
+
 
