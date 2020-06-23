@@ -6,6 +6,6 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('latest/', views.latest_lessons, name="latest_lessons"),
     path('viewall/', views.all_lessons, name="all_lessons"),
-    path('entries/', views.individual_entries, name="individual_entries"),
-    path('<int:lesson_id>/lesson', views.display, name="display")
+    path('searchentries/', views.search_entries, name="search_entries"),
+    path('<int:lesson_id>/', views.display, name="display")
 ]
