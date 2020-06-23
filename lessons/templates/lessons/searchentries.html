@@ -1,0 +1,17 @@
+<h1>Search vocabulary</h1>
+<p>Enter a word or a sentence to search individual lesson entries.</p>
+
+<form action="{% url 'lessons:search_entries' %}" method="post">
+{% csrf_token %}
+<input type="text" name="entry_search" id="entry_search" value="">
+<input type="submit" value="Search for a word or phrase">
+</form>
+
+<p>You currently have {{ search_result_length }} matches.</p>
+
+{% if search_result %}
+{% for e in search_result %}
+<p>{{ e.entry_text }}</p>
+<p>{{ e.translation }}</p>
+{% endfor %}
+{% endif %}
