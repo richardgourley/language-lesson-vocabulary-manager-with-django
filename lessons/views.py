@@ -21,21 +21,24 @@ def all_lessons(request):
     return render(request, 'lessons/all.html', context)
 
 def search_entries(request):
-    search_term = ''
     search_result = ''
+    message = ''
     if request.POST:
-        search_term = request.POST['entry_search']
-    if search_term != '':
-            search_result = Entry.objects.filter(entry_text__icontains=search_term).order_by('entry_text')
+        if request.POST['entry_search'] == '':
+            message = 'Please enter a word or a sentence.'
+        else:
+            search_result = Entry.objects.filter(entry_text__icontains=request.POST['entry_search']).order_by('entry_text')
+            message = "We found 1 matching result" if len(search_result) == 1 else "We found {} matching results.".format(len(search_result))
     context = {
         'search_result':search_result,
-        'search_result_length':len(search_result)
+        'message':message
     }
     return render(request, 'lessons/searchentries.html', context)
 
 def display(request, lesson_id):
     lesson = get_object_or_404(Lesson, pk = lesson_id)
     return render(request, 'lessons/display.html', {'lesson':lesson})
+
 
 
 
