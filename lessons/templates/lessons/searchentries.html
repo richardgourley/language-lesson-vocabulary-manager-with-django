@@ -7,7 +7,9 @@
 <input type="submit" value="Search for a word or phrase">
 </form>
 
-<p>You currently have {{ search_result_length }} matches.</p>
+{% if message %}
+<p>{{ message }}</p>
+{% endif %}
 
 {% if search_result %}
 {% for e in search_result %}
