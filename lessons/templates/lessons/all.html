@@ -2,10 +2,8 @@
 
 <ul>
 {% for l in all_lessons %}
-    <p>{{ l.lesson_name }}</p>
+    <h3>{{ l.lesson_name }}</h3>
     <p>{{ l.description }}</p>
-    <button>
-    	<a href="{% url 'lessons:display' l.id %}">Go!</a>
-    </button>
+    <a href="{% url 'lessons:display' l.id %}"><button>Go!</button></a>
 {% endfor %}
 </ul>
