@@ -4,8 +4,6 @@
 {% for l in latest_lessons %}
     <p>{{ l.lesson_name }}</p>
     <p>{{ l.description }}</p>
-    <button>
-    	<a href="{% url 'lessons:display' l.id %}">Go!</a>
-    </button>
+    <a href="{% url 'lessons:display' l.id %}"><button>Go!</button></a>
 {% endfor %}
 </ul>
