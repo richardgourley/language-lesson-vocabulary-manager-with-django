@@ -3,7 +3,7 @@
 
 <form action="{% url 'lessons:search_entries' %}" method="post">
 {% csrf_token %}
-<input type="text" name="entry_search" id="entry_search" value="">
+{{ form }}
 <input type="submit" value="Search for a word or phrase">
 </form>
 
