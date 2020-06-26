@@ -7,13 +7,6 @@ from .forms import SearchEntryForm
 def index(request):
     return render(request, 'lessons/index.html', {})
 
-def latest_lessons(request):
-    latest_lessons = Lesson.objects.all()[:5]
-    context = {
-        'latest_lessons':latest_lessons
-    }
-    return render(request, 'lessons/latest.html', context)
-
 # 10 lessons with lowest order number 
 def featured_lessons(request):
     featured_lessons = Lesson.objects.filter().order_by('order')[:10]
@@ -21,7 +14,6 @@ def featured_lessons(request):
         'featured_lessons':featured_lessons
     }
     return render(request, 'lessons/featured.html', context)
-
 
 def all_lessons(request):
     all_lessons = Lesson.objects.all()
@@ -46,6 +38,7 @@ def search_entries(request):
 def display(request, lesson_id):
     lesson = get_object_or_404(Lesson, pk = lesson_id)
     return render(request, 'lessons/display.html', {'lesson':lesson})
+
 
 
 
