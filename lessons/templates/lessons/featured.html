@@ -1,0 +1,10 @@
+<h1>Featured lessons</h1>
+<p>Get started here with some popular lessons</p>
+
+<ul>
+{% for l in featured_lessons %}
+    <p>{{ l.lesson_name }}</p>
+    <p>{{ l.description }}</p>
+    <a href="{% url 'lessons:display' l.id %}"><button>Go!</button></a>
+{% endfor %}
+</ul>
