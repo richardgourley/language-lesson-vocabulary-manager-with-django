@@ -1,9 +1,0 @@
-<h1>Latest lessons</h1>
-
-<ul>
-{% for l in latest_lessons %}
-    <p>{{ l.lesson_name }}</p>
-    <p>{{ l.description }}</p>
-    <a href="{% url 'lessons:display' l.id %}"><button>Go!</button></a>
-{% endfor %}
-</ul>
