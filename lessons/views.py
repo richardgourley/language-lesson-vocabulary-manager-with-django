@@ -17,12 +17,12 @@ class FeaturedLessonsView(generic.ListView):
     def get_queryset(self):
         return Lesson.objects.filter().order_by('order')[:10]
 
-def all_lessons(request):
-    all_lessons = Lesson.objects.all()
-    context = {
-        'all_lessons':all_lessons
-    }
-    return render(request, 'lessons/all.html', context)
+class AllLessonsView(generic.ListView):
+    template_name = 'lessons/all.html'
+    context_object_name = 'all_lessons'
+
+    def get_queryset(self):
+        return Lesson.objects.all()
 
 def search_entries(request):
     if request.method == 'POST':
@@ -40,6 +40,7 @@ def search_entries(request):
 def display(request, lesson_id):
     lesson = get_object_or_404(Lesson, pk = lesson_id)
     return render(request, 'lessons/display.html', {'lesson':lesson})
+
 
 
 
