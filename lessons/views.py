@@ -1,12 +1,13 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
-from django.views import generic
 from .models import Lesson, Entry
 from .forms import SearchEntryForm
+from django.views import generic
 
 # Create your views here.
-def index(request):
-    return render(request, 'lessons/index.html', {})
+
+class IndexView(generic.TemplateView):
+    template_name = 'lessons/index.html'
 
 # 10 lessons with lowest order number 
 def featured_lessons(request):
@@ -39,12 +40,5 @@ def search_entries(request):
 def display(request, lesson_id):
     lesson = get_object_or_404(Lesson, pk = lesson_id)
     return render(request, 'lessons/display.html', {'lesson':lesson})
-
-
-
-
-
-
-
 
 
