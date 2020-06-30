@@ -10,12 +10,6 @@ class LessonModelTests(TestCase):
         test_lesson = Lesson(lesson_name="name", description="description")
         self.assertIs((test_lesson.order == 100), True)
 
-    def test_mock_test(self):
-        # Create lesson without any entries
-        test_lesson = Lesson(lesson_name="test_lesson",description="description of test lesson")
-        all_lessons = [1,2,3]
-        self.assertIs((len(all_lessons) == 3), True)
-
 
 class ViewTests(TestCase):
     def setUp(self):
@@ -24,3 +18,6 @@ class ViewTests(TestCase):
     def test_status_lessons_index_page_is_200(self):
         response = self.client.get(reverse('lessons:index'))
         self.assertIs(response.status_code, 200)
+
+
+
