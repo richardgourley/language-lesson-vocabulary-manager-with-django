@@ -10,13 +10,12 @@ class LessonModelTests(TestCase):
         test_lesson = Lesson(lesson_name="name", description="description")
         self.assertIs((test_lesson.order == 100), True)
 
-
-class ViewTests(TestCase):
+class LessonIndexViewTests(TestCase):
     def setUp(self):
         self.client = Client()
 
     def test_status_lessons_index_page_is_200(self):
-        response = self.client.get(reverse('lessons:index'))
+        response = self.client.get('/lessons/')
         self.assertIs(response.status_code, 200)
 
 
