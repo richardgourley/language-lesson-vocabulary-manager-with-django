@@ -5,6 +5,6 @@ from .models import Lesson
 
 class LessonModelTests(TestCase):
 
-	def test_longer_than_150_character_lesson_name_fails(self):
-		test_lesson = Lesson(lesson_name="I am a really really really long lesson name, probably too long, so long it has become a ridiculous situation", description="desc", order=80)
-		self.assertIs(test_lesson, False)
+	def test_lesson_with_no_order_returns_order_100(self):
+		test_lesson = Lesson(lesson_name="name", description="description")
+		self.assertIs((test_lesson.order == 100), True)
