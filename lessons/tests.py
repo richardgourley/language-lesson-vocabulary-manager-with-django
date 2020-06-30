@@ -63,12 +63,17 @@ class LessonAllLessonsViewTests(TestCase):
         )
 
 
+class LessonDetailViewTests(TestCase):
+    def setUp(self):
+        self.client = Client()
 
-
-
-
-
-
-
-
+    def test_lesson_detail_without_entries_returns_404(self):
+        '''
+        Test to see if a 404 page appears when a lesson/id page is visited if that
+        lesson does NOT have entries attached.
+        '''
+        test_lesson = Lesson.objects.create(lesson_name="lesson1", description="lesson1 description")
+        url = reverse('lessons:display', args=(test_lesson.id,))
+        response = self.client.get(url)
+        self.assertIs(response.status_code, 404)
 
