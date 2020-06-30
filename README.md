@@ -33,7 +33,7 @@ As well as general django project set up skills, the project makes use of:
 - Django forms
 - Namespacing urls
 - Using admin.StackedInLine to add a model with a foreign key to the parent model in the admin pages.
-- Django TestCase - testing apps
+- Django TestCase - app testing modules
 
 
 
