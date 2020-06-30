@@ -5,6 +5,6 @@ from .models import Lesson
 
 class LessonModelTests(TestCase):
 
-	def test_lesson_with_no_order_returns_order_100(self):
+	def test_lesson_with_order_default_returns_100(self):
 		test_lesson = Lesson(lesson_name="name", description="description")
 		self.assertIs((test_lesson.order == 100), True)
