@@ -1,9 +1,10 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
-from .models import Lesson, Entry
-from .forms import SearchEntryForm
 from django.views import generic
 from django.db.models import Count
+
+from .models import Lesson, Entry
+from .forms import SearchEntryForm
 
 # Create your views here.
 
@@ -16,7 +17,7 @@ class FeaturedLessonsView(generic.ListView):
     context_object_name = 'featured_lessons'
 
     def get_queryset(self):
-        Lesson.objects.annotate(num_entries=Count('entry')).filter(num_entries__gt=0).order_by('order')[:10]
+        return Lesson.objects.annotate(num_entries=Count('entry')).filter(num_entries__gt=0).order_by('order')[:10]
 
 
 class AllLessonsView(generic.ListView):
@@ -42,6 +43,7 @@ def search_entries(request):
 class DisplayView(generic.DetailView):
     model = Lesson
     template_name = 'lessons/display.html'
+
 
 
 
