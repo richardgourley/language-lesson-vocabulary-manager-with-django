@@ -41,23 +41,23 @@ class LessonFeaturedLessonsViewTests(TestCase):
         )
 
     def test_featured_lessons_has_featured_lessons_key_in_context(self):
-    	'''
+        '''
         Tests that response.context contains a 'featured_lessons' key
-    	'''
-    	response = self.client.get(reverse('lessons:featured_lessons'))
-    	has_featured_lessons_key = False 
-    	if 'featured_lessons' in response.context:
-    		has_featured_lessons_key = True
+        '''
+        response = self.client.get(reverse('lessons:featured_lessons'))
+        has_featured_lessons_key = False 
+        if 'featured_lessons' in response.context:
+            has_featured_lessons_key = True
 
-    	self.assertIs(has_featured_lessons_key, True)
+        self.assertIs(has_featured_lessons_key, True)
 
     def test_featured_lessons_no_lessons_found_displays_message(self):
-    	'''
-    	Tests that the html returned contains 'no lessons found' if no lessons exist
-    	'''
-    	response = self.client.get(reverse('lessons:featured_lessons'))
-    	contains_message = 'No lessons found' in str(response.content)
-    	self.assertIs(contains_message, True)
+        '''
+        Tests that the html returned contains 'no lessons found' if no lessons exist
+        '''
+        response = self.client.get(reverse('lessons:featured_lessons'))
+        contains_message = 'No lessons found' in str(response.content)
+        self.assertIs(contains_message, True)
 
 
 class LessonAllLessonsViewTests(TestCase):
@@ -82,23 +82,23 @@ class LessonAllLessonsViewTests(TestCase):
         )
 
     def test_all_lessons_has_all_lessons_key_in_context(self):
-    	'''
+        '''
         Tests that response.context contains an 'all_lessons' key
-    	'''
-    	response = self.client.get(reverse('lessons:all_lessons'))
-    	has_all_lessons_key = False 
-    	if 'all_lessons' in response.context:
-    		has_all_lessons_key = True
+        '''
+        response = self.client.get(reverse('lessons:all_lessons'))
+        has_all_lessons_key = False 
+        if 'all_lessons' in response.context:
+            has_all_lessons_key = True
 
-    	self.assertIs(has_all_lessons_key, True)
+        self.assertIs(has_all_lessons_key, True)
 
     def test_all_lessons_no_lessons_found_displays_message(self):
-    	'''
-    	Tests that the html returned contains 'no lessons found' if no lessons exist
-    	'''
-    	response = self.client.get(reverse('lessons:all_lessons'))
-    	contains_message = 'No lessons found' in str(response.content)
-    	self.assertIs(contains_message, True)
+        '''
+        Tests that the html returned contains 'no lessons found' if no lessons exist
+        '''
+        response = self.client.get(reverse('lessons:all_lessons'))
+        contains_message = 'No lessons found' in str(response.content)
+        self.assertIs(contains_message, True)
 
 
 class LessonDetailViewTests(TestCase):
@@ -107,12 +107,27 @@ class LessonDetailViewTests(TestCase):
 
     def test_lesson_detail_without_entries_returns_404(self):
         '''
-        Test to see if a 404 page appears when a lesson/id page is visited if that
+        Test to see if a 404 page appears when a lessons/id page is visited if that
         lesson does NOT have entries attached.
         '''
-        test_lesson = Lesson.objects.create(lesson_name="lesson1", description="lesson1 description")
-        url = reverse('lessons:display', args=(test_lesson.id,))
+        l = Lesson.objects.create(lesson_name="lesson1", description="lesson1 description")
+        url = reverse('lessons:display', args=(l.id,))
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 404)
+
+    def test_lesson_detail_with_entries_returns_200(self):
+        '''
+        A 'lessons/id' for a lesson that has entries attached to it, should
+        return status_code 200
+        '''
+        l = Lesson.objects.create(lesson_name="test_lesson", description="test lesson desc")
+        l.entry_set.create(entry_text="shoe", translation="zapato")
+        url = reverse('lessons:display', args=(l.id,))
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+
+
+
 
