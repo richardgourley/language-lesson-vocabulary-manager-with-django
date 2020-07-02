@@ -14,12 +14,12 @@ This is a django project made up of 2 models:
 - Translation
 
 ## WHO IS IT FOR?
-- The web app could be used as a language teaching app.
-- It could also be used by teachers who wish to share vocabulary and a translation with students either before or after classes.
+- This web app could be used as the basis for a language learning app.
+- It could also be used by language teachers to share vocabulary and translations with students.
 
 ## SITE ADMIN
-- The site admin can create, modify and delete lessons with a description and assign an order number. This allows the creation of featured lessons for the home page.
-- The admin can add vocabulary entries with a translation. (
+- The site admin can create, modify and delete lessons with a description and assign an order number. The featured lessons page shows lessons ordered by lowest order number.
+- The admin can add vocabulary entries with a translation, to each lesson.
 
 ## SITE PAGES
 - Featured lessons - shows 10 featured lessons (as assigned by the site admin via the 'order' field for lessons.)
