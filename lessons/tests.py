@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import reverse
+from django.db.models import Count
 
 from .models import Lesson
 # Create your tests here.
@@ -112,14 +113,6 @@ class LessonDetailViewTests(TestCase):
         test_lesson = Lesson.objects.create(lesson_name="lesson1", description="lesson1 description")
         url = reverse('lessons:display', args=(test_lesson.id,))
         response = self.client.get(url)
-        self.assertIs(response.status_code, 404)
 
-
-
-
-
-
-
-
-
+        self.assertEqual(response.status_code, 404)
 
