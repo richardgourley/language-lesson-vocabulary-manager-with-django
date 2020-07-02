@@ -5,7 +5,6 @@ from .models import Lesson
 # Create your tests here.
 
 class LessonModelTests(TestCase):
-
     def test_lesson_with_order_default_returns_100(self):
         test_lesson = Lesson(lesson_name="name", description="description")
         self.assertIs((test_lesson.order == 100), True)
@@ -40,17 +39,24 @@ class LessonFeaturedLessonsViewTests(TestCase):
             []
         )
 
-    def test_featured_lessons_has_message_key_in_context(self):
+    def test_featured_lessons_has_featured_lessons_key_in_context(self):
     	'''
-        If there are 0 lessons found, a message 'no lessons found appears'
+        Tests that response.context contains a message key
     	'''
     	response = self.client.get(reverse('lessons:featured_lessons'))
-    	has_message = False 
-    	if 'message' in response.context:
-    		has_message = True
+    	has_featured_lessons_key = False 
+    	if 'featured_lessons' in response.context:
+    		has_featured_lessons_key = True
 
-    	self.assertIs(has_message, True)
+    	self.assertIs(has_featured_lessons_key, True)
 
+    def test_featured_lessons_no_lessons_found_displays_message(self):
+    	'''
+    	Tests that the html returned contains 'no lessons found' if no lessons exist
+    	'''
+    	response = self.client.get(reverse('lessons:featured_lessons'))
+    	contains_message = 'No lessons found' in str(response.content)
+    	self.assertIs(contains_message, True)
 
 
 class LessonAllLessonsViewTests(TestCase):
@@ -88,6 +94,9 @@ class LessonDetailViewTests(TestCase):
         url = reverse('lessons:display', args=(test_lesson.id,))
         response = self.client.get(url)
         self.assertIs(response.status_code, 404)
+
+
+
 
 
 
