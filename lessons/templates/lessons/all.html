@@ -1,9 +1,13 @@
 <h1>All lessons</h1>
 
-<ul>
-{% for l in all_lessons %}
-    <h3>{{ l.lesson_name }}</h3>
-    <p>{{ l.description }}</p>
-    <a href="{% url 'lessons:display' l.id %}"><button>Go!</button></a>
-{% endfor %}
-</ul>
+{% if all_lessons %}
+    <ul>
+	{% for l in all_lessons %}
+	    <h3>{{ l.lesson_name }}</h3>
+	    <p>{{ l.description }}</p>
+	    <a href="{% url 'lessons:display' l.id %}"><button>Go!</button></a>
+	{% endfor %}
+	</ul>
+{% else %}
+    <h2>No lessons found</h2>
+{% endif %}
