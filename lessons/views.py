@@ -44,6 +44,10 @@ class DisplayView(generic.DetailView):
     model = Lesson
     template_name = 'lessons/display.html'
 
+    def get_queryset(self):
+        return Lesson.objects.annotate(num_entries=Count('entry')).filter(num_entries__gt=0)
+
+
 
 
 
