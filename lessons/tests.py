@@ -40,6 +40,18 @@ class LessonFeaturedLessonsViewTests(TestCase):
             []
         )
 
+    def test_featured_lessons_has_message_key_in_context(self):
+    	'''
+        If there are 0 lessons found, a message 'no lessons found appears'
+    	'''
+    	response = self.client.get(reverse('lessons:featured_lessons'))
+    	has_message = False 
+    	if 'message' in response.context:
+    		has_message = True
+
+    	self.assertIs(has_message, True)
+
+
 
 class LessonAllLessonsViewTests(TestCase):
     def setUp(self):
@@ -76,4 +88,7 @@ class LessonDetailViewTests(TestCase):
         url = reverse('lessons:display', args=(test_lesson.id,))
         response = self.client.get(url)
         self.assertIs(response.status_code, 404)
+
+
+
 
