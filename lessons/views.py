@@ -25,7 +25,7 @@ class AllLessonsView(generic.ListView):
     context_object_name = 'all_lessons'
 
     def get_queryset(self):
-        return Lesson.objects.all()
+        return Lesson.objects.annotate(num_entries=Count('entry')).filter(num_entries__gt=0)
 
 def search_entries(request):
     if request.method == 'POST':
@@ -46,10 +46,3 @@ class DisplayView(generic.DetailView):
 
     def get_queryset(self):
         return Lesson.objects.annotate(num_entries=Count('entry')).filter(num_entries__gt=0)
-
-
-
-
-
-
-
