@@ -41,7 +41,7 @@ class LessonFeaturedLessonsViewTests(TestCase):
 
     def test_featured_lessons_has_featured_lessons_key_in_context(self):
     	'''
-        Tests that response.context contains a message key
+        Tests that response.context contains a 'featured_lessons' key
     	'''
     	response = self.client.get(reverse('lessons:featured_lessons'))
     	has_featured_lessons_key = False 
@@ -80,6 +80,25 @@ class LessonAllLessonsViewTests(TestCase):
             []
         )
 
+    def test_all_lessons_has_all_lessons_key_in_context(self):
+    	'''
+        Tests that response.context contains an 'all_lessons' key
+    	'''
+    	response = self.client.get(reverse('lessons:all_lessons'))
+    	has_all_lessons_key = False 
+    	if 'all_lessons' in response.context:
+    		has_all_lessons_key = True
+
+    	self.assertIs(has_all_lessons_key, True)
+
+    def test_all_lessons_no_lessons_found_displays_message(self):
+    	'''
+    	Tests that the html returned contains 'no lessons found' if no lessons exist
+    	'''
+    	response = self.client.get(reverse('lessons:all_lessons'))
+    	contains_message = 'No lessons found' in str(response.content)
+    	self.assertIs(contains_message, True)
+
 
 class LessonDetailViewTests(TestCase):
     def setUp(self):
@@ -94,6 +113,9 @@ class LessonDetailViewTests(TestCase):
         url = reverse('lessons:display', args=(test_lesson.id,))
         response = self.client.get(url)
         self.assertIs(response.status_code, 404)
+
+
+
 
 
 
